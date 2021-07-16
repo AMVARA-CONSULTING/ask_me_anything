@@ -1,0 +1,25 @@
+version: "3"
+services:
+  apache:
+    image: "httpd:latest"
+    container_name: tables_front
+    volumes:
+      - ./:/code
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+    working_dir: /code
+    ports:
+      - "80:80"
+      - "443:443"
+      - "4200:4200"
+    command: bash /code/start.sh basic angular compile
+    env_file:
+      - ./global.env
+    networks:
+      - cometa_testing
+    restart: always
+
+networks:
+  cometa_testing:
+    external: true

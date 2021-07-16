@@ -1,0 +1,18 @@
+.row {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    border: 1px solid red;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.row:nth-of-type(2n + 1) {
+    background: rgba(0, 0, 0, .1);
+}
+
+.feature {
+    display: flex;
+    width: 50%;
+    justify-content:space-around;
+}

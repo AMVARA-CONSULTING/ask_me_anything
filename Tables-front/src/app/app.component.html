@@ -1,0 +1,39 @@
+<div style="text-align:center">
+   <span *ngIf="data">
+    <div *ngFor="let result of data.results">
+        <div class="row">
+            <div class="status">
+                {{ result.status }}
+            </div>
+            <div class="date">
+                {{ result.date_time }}
+            </div>
+            <div *ngFor="let feature of result.feature_results" class="feature">
+                <div class="steps">
+                    {{ feature.total }}
+                </div>
+                <div class="ok">
+                    {{ feature.ok }}
+                </div>
+                <div class="nok">
+                    {{ feature.nok }}
+                </div>
+                <div class="skipped">
+                    {{ feature.skipped }}
+                </div>
+                <div class="time">
+                    {{ feature.execution_time }}
+                </div>
+                <div class="browser">
+                </div>
+                <div class="pixel difference">
+                    {{ feature.pixel_diff }}
+                </div>
+                <div class="video">
+                    <a href="{{ feature.video_url }}">Video</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </span>
+<router-outlet></router-outlet>

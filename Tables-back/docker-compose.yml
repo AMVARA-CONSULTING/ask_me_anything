@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: tables_database
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  django:
+    container_name: tables_django
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: always
+
+    # command: sh start.sh
+    # image: python:3.9
+    # logging:
+    #     driver: json-file
+    # volumes:
+    #     - .:/code
+    # ports:
+    #     - "8000:8000"
+    # depends_on:
+    #     - db
