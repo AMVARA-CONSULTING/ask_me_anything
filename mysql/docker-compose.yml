@@ -1,0 +1,21 @@
+version: '3.4'
+services:
+
+  mariadb:
+    image: mariadb:10.2
+    container_name: ama_mariadb
+    hostname: ama_mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: amvara
+      MYSQL_USER: amvara
+      MYSQL_PASSWORD: changeme
+    # logging:
+    #   driver: syslog
+    #   options:
+    #     tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
+    # networks:
+    #   - backend
+    restart: on-failure
+    volumes:
+     - ${PWD}/mariadb:/var/www/ama/mysql/data

@@ -1,0 +1,7 @@
+*.dmb
+*.rsc
+*.int
+*.lk
+*.zip
+
+secret_variables.py

@@ -1,0 +1,39 @@
+*{
+    margin: 2px;
+}
+
+.caixa, .adv, .link, .tabla, .delete, p{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.adv{
+    margin-top: 20px;
+    color: red;
+}
+
+.sep{
+    margin-bottom: 50px;
+}
+
+
+table, td, tr, th{
+    margin-top: 20px;
+    border: 1px solid black;
+    text-align: center;
+    width: 500px;
+}
+
+th, td{
+    padding: 5px;
+}
+
+td{
+    color:red;
+    font-size: 12px;
+}
+
+.tabla{
+    margin-top: 50px;
+}
