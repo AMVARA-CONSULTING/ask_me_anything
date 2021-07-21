@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>AMVARA: Autoplay Story in IBM Cognos Analytics</title>
+</head>
+<body>
+
+<!--
+
+    21.07.2021 Barcelona, Catalunya
+
+    Dear Cognos Lover,
+
+    This is an example how to achieve autoplay functionality 
+    in IBM Cognos Analytics.
+    
+    What it does:
+    Load the Story in an iFrame, wait until the play button is 
+    there - then press it and start playing.
+
+    Open the story in your Cognos Portal, click the Share button, 
+    extract the iFrame link and put it in this archive.
+
+    This archive should go onto the webserver of the very same 
+    CA installation to avoid CROSS-domain errors. If you have access
+    to the machine just copy it or use "upload extension" to place
+    the archive on the server.
+
+    If you have any questions, please do not hesitate to leave us an issue.
+    We would be happy to adress it.
+
+    Keep on rocking with IBM Cognos Analytics.
+
+    Regards,
+    Ralf
+
+    AMVARA CONSULTING S.L.
+
+-->
+
+
+<iframe height="100%" width="100%"
+        allow="autoplay"
+        src="/crn1/bi/?perspective=XSSSTARTstoryXSSEND&amp;pathRef=XSSSTART.my_5ffolders%2FNew%2BstoryXSSEND&amp;closeWindowOnLastView=true&amp;ui_appbar=false&amp;ui_navbar=false&amp;shareMode=XSSSTARTembeddedXSSEND&amp;action=XSSSTARTviewXSSEND&amp;sceneId=XSSSTARTmodel0000017ac88c9791_5f00000000XSSEND&amp;sceneTime=5000" width="320" height="200" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+
+<script>
+
+
+function clickPlay() {
+        try {
+                // Button No. 11 is the play button - try to hit it
+                document.querySelector("iframe").contentWindow.document.querySelectorAll("button")[11].click()
+        } catch {
+                // Got exception from click on button
+                console.log("AMVARA: Content not ready - waiting interval")
+                return
+        }
+        console.log("AMVARA: clear Interval")
+        clearInterval(AMVARA_interval)
+        console.log("AMVARA: story is now autoplaying")
+}
+
+// Just some message for the console.log that we are ready to auto-play
+console.log("AMVARA: loading story with autoplay")
+
+// Schedule try clicking on play button every 100ms  
+var AMVARA_interval=setInterval( clickPlay , 100);
+
+
+</script>
+
+</body>
+</html>
