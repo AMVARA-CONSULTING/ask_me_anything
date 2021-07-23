@@ -1,0 +1,3 @@
+# Mailcow Documentation
+
+----
