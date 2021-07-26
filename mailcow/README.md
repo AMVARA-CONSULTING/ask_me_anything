@@ -118,9 +118,9 @@ docker-compose pull
   # Multiple rcpts allowed, NO quotation marks, NO spaces
 
   #WATCHDOG_NOTIFY_EMAIL=a@example.com,b@example.com,c@example.com
-  #WATCHDOG_NOTIFY_EMAIL=
+  WATCHDOG_NOTIFY_EMAIL=send@example.com
   ```
-  
+
 * Edited `extra.cf`
   * Added
 
@@ -161,19 +161,29 @@ https://user-images.githubusercontent.com/57411642/126799085-c528c2d9-ba61-44aa-
 
 ### Implement 2FA to admin
 
+Access -> Administrator -> Two-factor authentication -> Please select -> Time-based OTP
+
 <!-- Regrabar video-->
 
 https://user-images.githubusercontent.com/57411642/126799404-7366b478-67a4-4764-af16-2e9bf4dd7f16.mp4
 
 ### Enable rspamd
 
+Access -> Rspamd UI
+
 https://user-images.githubusercontent.com/57411642/126799516-c040f32d-aa7f-4c22-ba2e-07051978a348.mp4
 
 ### Configure fail2ban
 
+Configuration -> Fail2ban parameters
+
+<!-- No se si debería explicar un poco cada parámetro -->
+
 https://user-images.githubusercontent.com/57411642/126800058-783c1bde-3720-4d10-86c1-29997409cda1.mp4
 
 ### Personalize webadmin
+
+Configuration -> Customize
 
 https://user-images.githubusercontent.com/57411642/126800169-eb53c23d-7c15-4ae9-bb82-adad0b9d6cb5.mp4
 
