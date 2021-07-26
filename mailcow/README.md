@@ -96,11 +96,15 @@ git clone https://github.com/mailcow/mailcow-dockerized
 cd mailcow-dockerized
 ./generate_config.sh
 # Mail server hostname (FQDN) - this is not your mail domain, but your mail servers hostname: 
-mail.axample.com
+mail.example.com
 # Timezone [Europe/Madrid]:
 Europe/Madrid
 docker-compose pull
 ```
+
+<https://www.youtube-nocookie.com/embed/4rzc0hWRSPg>
+
+<11-Check-config-dns.mp4>
 
 ## Configuration
 
@@ -138,10 +142,14 @@ docker-compose pull
 
 ### First login
 
-* Default user: `admin`
-* Default password: `moohoo`
+* Login to admin dashboard
+  * Dashboard: `https://[FQDN]`
 
-https://user-images.githubusercontent.com/57411642/126798996-b262765f-a3f2-49d4-88e6-4b952d4f4666.mp4
+* Default user:
+  * username: `admin`
+  * password: `moohoo`
+
+<https://user-images.githubusercontent.com/57411642/126798996-b262765f-a3f2-49d4-88e6-4b952d4f4666.mp4>
 
 ### Change password policy
 
@@ -149,7 +157,7 @@ It is advisable to change the password policy to increase security
 
 Configuration -> Password policy
 
-https://user-images.githubusercontent.com/57411642/126799042-f6afef00-cab7-4b62-b0e4-51f5db5e51c6.mp4
+<https://user-images.githubusercontent.com/57411642/126799042-f6afef00-cab7-4b62-b0e4-51f5db5e51c6.mp4>
 
 ### Change admin password
 
@@ -157,7 +165,7 @@ It is very important to change the default password of the administrator to avoi
 
 Acces -> Administrators -> Edit
 
-https://user-images.githubusercontent.com/57411642/126799085-c528c2d9-ba61-44aa-8012-886fc3421ddc.mp4
+<https://user-images.githubusercontent.com/57411642/126799085-c528c2d9-ba61-44aa-8012-886fc3421ddc.mp4>
 
 ### Implement 2FA to admin
 
@@ -165,13 +173,13 @@ Access -> Administrator -> Two-factor authentication -> Please select -> Time-ba
 
 <!-- Regrabar video-->
 
-https://user-images.githubusercontent.com/57411642/126799404-7366b478-67a4-4764-af16-2e9bf4dd7f16.mp4
+<https://user-images.githubusercontent.com/57411642/126799404-7366b478-67a4-4764-af16-2e9bf4dd7f16.mp4>
 
 ### Enable rspamd
 
 Access -> Rspamd UI
 
-https://user-images.githubusercontent.com/57411642/126799516-c040f32d-aa7f-4c22-ba2e-07051978a348.mp4
+<https://user-images.githubusercontent.com/57411642/126799516-c040f32d-aa7f-4c22-ba2e-07051978a348.mp4>
 
 ### Configure fail2ban
 
@@ -179,31 +187,31 @@ Configuration -> Fail2ban parameters
 
 <!-- No se si debería explicar un poco cada parámetro -->
 
-https://user-images.githubusercontent.com/57411642/126800058-783c1bde-3720-4d10-86c1-29997409cda1.mp4
+<https://user-images.githubusercontent.com/57411642/126800058-783c1bde-3720-4d10-86c1-29997409cda1.mp4>
 
 ### Personalize webadmin
 
 Configuration -> Customize
 
-https://user-images.githubusercontent.com/57411642/126800169-eb53c23d-7c15-4ae9-bb82-adad0b9d6cb5.mp4
+<https://user-images.githubusercontent.com/57411642/126800169-eb53c23d-7c15-4ae9-bb82-adad0b9d6cb5.mp4>
 
 ### Create mail domain
 
-https://user-images.githubusercontent.com/57411642/126800872-e2da8fc8-bbc5-479a-b9fc-8d15f8a7c88e.mp4
+<https://user-images.githubusercontent.com/57411642/126800872-e2da8fc8-bbc5-479a-b9fc-8d15f8a7c88e.mp4>
 
 ### Create dkim key for dns record
 
-https://user-images.githubusercontent.com/57411642/126800932-e9f5cd94-0c5b-41c6-a51a-fa321c539dc3.mp4
+<https://user-images.githubusercontent.com/57411642/126800872-e2da8fc8-bbc5-479a-b9fc-8d15f8a7c88e.mp4>
 
 ### Create mail user
 
-https://user-images.githubusercontent.com/57411642/126801021-08144bd5-0046-414d-8ba2-893538d297c4.mp4
+<https://user-images.githubusercontent.com/57411642/126801021-08144bd5-0046-414d-8ba2-893538d297c4.mp4>
 
 ## Configure DNS
 
 ### Check DNS configuration
 
-https://user-images.githubusercontent.com/57411642/126801090-49d51d1b-d94c-40a0-a5cf-f8b72478c92a.mp4
+<https://user-images.githubusercontent.com/57411642/126801090-49d51d1b-d94c-40a0-a5cf-f8b72478c92a.mp4>
 
 ## Changelog
 
