@@ -241,7 +241,7 @@ Configuration -> Customize
 
 ### Create dkim key for dns record
 
-<https://user-images.githubusercontent.com/57411642/126800872-e2da8fc8-bbc5-479a-b9fc-8d15f8a7c88e.mp4>
+<https://user-images.githubusercontent.com/57411642/127067551-534ec12a-c9cc-495e-9425-8d9b150d0b80.mp4>
 
 * Add dkim in dns
 
