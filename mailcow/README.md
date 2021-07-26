@@ -42,6 +42,51 @@ If you have a firewall in front of mailcow, please make sure that these ports ar
 | HTTP                | TCP      | 80   | nginx-mailcow   | `${HTTP_PORT}`       |
 | HTTPS               | TCP      | 443  | nginx-mailcow   | `${HTTPS_PORT}`      |
 
+### [Configure DNS](https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-dns/)
+
+Records required for mail server and its good reputation
+
+#### Reverse DNS
+
+Make sure the PTR matches your FQDN, most mailservers check it.
+This record is usually changed with the server provider.
+
+> Ejemplo:  
+> `4.3.2.1.in-addr.arpa`
+
+#### DNS Records
+
+```dns
+# Name              Type       Value
+mail                IN A       1.2.3.4
+
+# Name              Type       Value
+autodiscover        IN CNAME   mail.example.org. (your ${MAILCOW_HOSTNAME})
+autoconfig          IN CNAME   mail.example.org. (your ${MAILCOW_HOSTNAME})
+
+# Name              Type       Value
+@                   IN MX 10   mail.example.org. (your ${MAILCOW_HOSTNAME})
+
+# Name              Type       Value
+@                   IN TXT     "v=spf1 mx a -all"
+_dmarc              IN TXT     "v=DMARC1; p=reject;"
+_caldavs._tcp       IN TXT     "path=/SOGo/dav/"
+_carddavs._tcp      IN TXT     "path=/SOGo/dav/"
+
+# Name              Type       Priority Weight Port    Value
+_autodiscover._tcp  IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_caldavs._tcp       IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_carddavs._tcp      IN SRV     0        1      443      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_imap._tcp          IN SRV     0        1      143      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_imaps._tcp         IN SRV     0        1      993      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_pop3._tcp          IN SRV     0        1      110      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_pop3s._tcp         IN SRV     0        1      995      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_sieve._tcp         IN SRV     0        1      4190     mail.example.org. (your ${MAILCOW_HOSTNAME})
+_smtp._tcp          IN SRV     0        1      25       mail.example.org. (your ${MAILCOW_HOSTNAME})
+_smtps._tcp         IN SRV     0        1      465      mail.example.org. (your ${MAILCOW_HOSTNAME})
+_submission._tcp    IN SRV     0        1      587      mail.example.org. (your ${MAILCOW_HOSTNAME})
+```
+
 ## Requisites
 
 ### Packages
@@ -102,7 +147,7 @@ Europe/Madrid
 docker-compose pull
 ```
 
-## Configuration
+## File Configuration
 
 <!-- TODO añadir los archivos modificados -->
 
@@ -138,8 +183,7 @@ docker-compose pull
 
 ### First login
 
-* Login to admin dashboard
-  * Dashboard: `https://[FQDN]`
+> Dashboard: `https://[FQDN]`
 
 * Default user:
   * username: `admin`
@@ -199,13 +243,21 @@ Configuration -> Customize
 
 <https://user-images.githubusercontent.com/57411642/126800872-e2da8fc8-bbc5-479a-b9fc-8d15f8a7c88e.mp4>
 
+* Add dkim in dns
+
+  ```dns
+  # Name              Type       Value
+  dkim._domainkey     IN TXT     (Paste dkim register)
+  ```
+
 ### Create mail user
 
 <https://user-images.githubusercontent.com/57411642/126801021-08144bd5-0046-414d-8ba2-893538d297c4.mp4>
 
-## Configure DNS
+> Webmail: `https://[FQDN]/SOGo/`  
+> Top menu bar -> Apps -> Webmail
 
-### Check DNS configuration
+#### Check DNS configuration
 
 <https://user-images.githubusercontent.com/57411642/126801090-49d51d1b-d94c-40a0-a5cf-f8b72478c92a.mp4>
 
