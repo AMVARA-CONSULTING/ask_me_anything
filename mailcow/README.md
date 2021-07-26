@@ -15,26 +15,53 @@ This documentation is made for **debian** and **ubuntu**
 | Disk        | 20 GiB (without emails)                         |
 | System Type | x86_64                                          |
 
+### Firewall & Ports
+
+Check that the ports required for mailcow are not being used:
+
+  ```bash
+  ss -tlpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190|5222|5269|5443'
+  # or:
+  netstat -tulpn | grep -E -w '25|80|110|143|443|465|587|993|995|4190|5222|5269|5443'
+  ```
+
+#### Default ports
+
+If you have a firewall in front of mailcow, please make sure that these ports are open for incoming connections:
+
+| Service             | Protocol | Port | Container       | Variable             |
+| ------------------- | -------- | ---- | --------------- | -------------------- |
+| Postfix SMTP        | TCP      | 25   | postfix-mailcow | `${SMTP_PORT}`       |
+| Postfix SMTPS       | TCP      | 465  | postfix-mailcow | `${SMTPS_PORT}`      |
+| Postfix Submission  | TCP      | 587  | postfix-mailcow | `${SUBMISSION_PORT}` |
+| Dovecot IMAP        | TCP      | 143  | dovecot-mailcow | `${IMAP_PORT}`       |
+| Dovecot IMAPS       | TCP      | 993  | dovecot-mailcow | `${IMAPS_PORT}`      |
+| Dovecot POP3        | TCP      | 110  | dovecot-mailcow | `${POP_PORT}`        |
+| Dovecot POP3S       | TCP      | 995  | dovecot-mailcow | `${POPS_PORT}`       |
+| Dovecot ManageSieve | TCP      | 4190 | dovecot-mailcow | `${SIEVE_PORT}`      |
+| HTTP                | TCP      | 80   | nginx-mailcow   | `${HTTP_PORT}`       |
+| HTTPS               | TCP      | 443  | nginx-mailcow   | `${HTTPS_PORT}`      |
+
 ## Requisites
 
 ### Packages
 
 * Git
 
-    ```shell
+    ```bash
     apt install git
     ```
 
 * Python 3
 
-    ```shell
+    ```bash
     apt install python3-pip
     ```
 
 * Docker `(version >= 20.10.2)`
   * Docker requisites
 
-    ```shell
+    ```bash
     apt-get update
     apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
     LINUX_DISTRO=$(lsb_release -is)
@@ -45,14 +72,14 @@ This documentation is made for **debian** and **ubuntu**
 
   * Install docker
 
-    ```shell
+    ```bash
     apt-get update
     apt-get install docker-ce docker-ce-cli containerd.io
     ```
 
 * Docker-Compose [(Use the latest release)](https://github.com/docker/compose/releases/latest)
 
-    ```shell
+    ```bash
     COMPOSE_VERSION="1.29.2"
     curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
@@ -63,15 +90,16 @@ This documentation is made for **debian** and **ubuntu**
 
 <!-- TODO mejorar esto con ejemplos -->
 
-```shell
+```bash
 cd /opt
 git clone https://github.com/mailcow/mailcow-dockerized
 cd mailcow-dockerized
 ./generate_config.sh
+# Mail server hostname (FQDN) - this is not your mail domain, but your mail servers hostname: 
 mail.axample.com
+# Timezone [Europe/Madrid]:
 Europe/Madrid
 docker-compose pull
-docker-compose up -d
 ```
 
 ## Configuration
@@ -80,12 +108,31 @@ docker-compose up -d
 
 * Edited `mailcow.conf`
   * Added watchdog mail sender
+
+  ```bash
+  # Send watchdog notifications by mail (sent from watchdog@MAILCOW_HOSTNAME)
+  # CAUTION:
+  # 1. You should use external recipients
+  # 2. Mails are sent unsigned (no DKIM)
+  # 3. If you use DMARC, create a separate DMARC policy ("v=DMARC1; p=none;" in _dmarc.MAILCOW_HOSTNAME)
+  # Multiple rcpts allowed, NO quotation marks, NO spaces
+
+  #WATCHDOG_NOTIFY_EMAIL=a@example.com,b@example.com,c@example.com
+  #WATCHDOG_NOTIFY_EMAIL=
+  ```
+  
 * Edited `extra.cf`
   * Added
 
-    ```shell
+    ```bash
     mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24
     ```
+
+* Start mailcow
+
+  ```bash
+  docker-compose up -d
+  ```
 
 ## Web configuration
 
@@ -138,7 +185,7 @@ https://user-images.githubusercontent.com/57411642/126800872-e2da8fc8-bbc5-479a-
 
 https://user-images.githubusercontent.com/57411642/126800932-e9f5cd94-0c5b-41c6-a51a-fa321c539dc3.mp4
 
-### Create mail user 
+### Create mail user
 
 https://user-images.githubusercontent.com/57411642/126801021-08144bd5-0046-414d-8ba2-893538d297c4.mp4
 
