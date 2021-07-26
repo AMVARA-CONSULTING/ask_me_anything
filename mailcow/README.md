@@ -102,10 +102,6 @@ Europe/Madrid
 docker-compose pull
 ```
 
-<https://www.youtube-nocookie.com/embed/4rzc0hWRSPg>
-
-<11-Check-config-dns.mp4>
-
 ## Configuration
 
 <!-- TODO añadir los archivos modificados -->
