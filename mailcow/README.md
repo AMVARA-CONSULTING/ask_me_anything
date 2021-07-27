@@ -154,6 +154,8 @@ docker-compose pull
 * Edited `mailcow.conf`
   * Added watchdog mail sender
 
+  > Only edit `WATCHDOG_NOTIFY_EMAIL`, this environment variable already exists in the file
+
   ```bash
   # Send watchdog notifications by mail (sent from watchdog@MAILCOW_HOSTNAME)
   # CAUTION:
@@ -193,29 +195,28 @@ docker-compose pull
 
 ### Change password policy
 
-It is advisable to change the password policy to increase security
-
+It is advisable to change the password policy to increase security.  
 Configuration -> Password policy
 
 <https://user-images.githubusercontent.com/57411642/126799042-f6afef00-cab7-4b62-b0e4-51f5db5e51c6.mp4>
 
 ### Change admin password
 
-It is very important to change the default password of the administrator to avoid security flaws
-
+It is very important to change the default password of the administrator to avoid security flaws.  
 Acces -> Administrators -> Edit
 
 <https://user-images.githubusercontent.com/57411642/126799085-c528c2d9-ba61-44aa-8012-886fc3421ddc.mp4>
 
 ### Implement 2FA to admin
 
+Increase security in case of password theft by preventing access if you do not have a token.  
 Access -> Administrator -> Two-factor authentication -> Please select -> Time-based OTP
 
 <!-- Regrabar video-->
 
 <https://user-images.githubusercontent.com/57411642/126799404-7366b478-67a4-4764-af16-2e9bf4dd7f16.mp4>
 
-### Enable rspamd
+### Enable Rspamd UI
 
 Access -> Rspamd UI
 
@@ -237,9 +238,13 @@ Configuration -> Customize
 
 ### Create mail domain
 
+Top menu bar -> Configuration -> Mail Setup
+
 <https://user-images.githubusercontent.com/57411642/126800872-e2da8fc8-bbc5-479a-b9fc-8d15f8a7c88e.mp4>
 
 ### Create dkim key for dns record
+
+Top menu bar -> Mail Setup -> Configuration --> Configuration -> ARC/DKIM keys
 
 <https://user-images.githubusercontent.com/57411642/127067551-534ec12a-c9cc-495e-9425-8d9b150d0b80.mp4>
 
@@ -252,12 +257,14 @@ Configuration -> Customize
 
 ### Create mail user
 
+Top menu bar -> Configuration -> Mail Setup -> Mailboxes
+
 <https://user-images.githubusercontent.com/57411642/126801021-08144bd5-0046-414d-8ba2-893538d297c4.mp4>
 
 > Webmail: `https://[FQDN]/SOGo/`  
 > Top menu bar -> Apps -> Webmail
 
-#### Check DNS configuration
+#### Check DNS configuration --> Domains --> DNS
 
 <https://user-images.githubusercontent.com/57411642/126801090-49d51d1b-d94c-40a0-a5cf-f8b72478c92a.mp4>
 
