@@ -4,9 +4,9 @@ This documentation is made for **debian** and **ubuntu**
 
 ----
 
-## [Prerequisites](https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-system/)
+## Prerequisites
 
-### System
+### [System](https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-system/#minimum-system-resources)
 
 | Resource    | mailcow: dockerized                             |
 | ----------- | ----------------------------------------------- |
@@ -15,7 +15,7 @@ This documentation is made for **debian** and **ubuntu**
 | Disk        | 20 GiB (without emails)                         |
 | System Type | x86_64                                          |
 
-### Firewall & Ports
+### [Firewall & Ports](https://mailcow.github.io/mailcow-dockerized-docs/prerequisite-system/#firewall-ports)
 
 Check that the ports required for mailcow are not being used:
 
@@ -87,7 +87,7 @@ _smtps._tcp         IN SRV     0        1      465      mail.example.org. (your 
 _submission._tcp    IN SRV     0        1      587      mail.example.org. (your ${MAILCOW_HOSTNAME})
 ```
 
-## Requisites
+## [Requisites](https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_install/)
 
 ### Packages
 
@@ -131,7 +131,7 @@ _submission._tcp    IN SRV     0        1      587      mail.example.org. (your 
     ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
     ```
 
-## Installation
+## [Installation](https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_install/)
 
 <!-- TODO mejorar esto con ejemplos -->
 
@@ -146,6 +146,9 @@ mail.example.com
 Europe/Madrid
 docker-compose pull
 ```
+
+> **Note of envoirement variable**  
+> **`FQDN = ${MAILCOW_HOSTNAME}`**
 
 ## File Configuration
 
@@ -185,7 +188,7 @@ docker-compose pull
 
 ### First login
 
-> Dashboard: `https://[FQDN]`
+> Dashboard: `https://${MAILCOW_HOSTNAME}`
 
 * Default user:
   * username: `admin`
@@ -210,7 +213,7 @@ Acces -> Administrators -> Edit
 ### Implement 2FA to admin
 
 Increase security in case of password theft by preventing access if you do not have a token.  
-Access -> Administrator -> Two-factor authentication -> Please select -> Time-based OTP
+Access -> Administrator -> Two-factor authentication: Please select -> Time-based OTP
 
 <!-- Regrabar video-->
 
@@ -267,6 +270,43 @@ Top menu bar -> Configuration -> Mail Setup -> Mailboxes
 #### Check DNS configuration --> Domains --> DNS
 
 <https://user-images.githubusercontent.com/57411642/126801090-49d51d1b-d94c-40a0-a5cf-f8b72478c92a.mp4>
+
+## [Update](https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_update)
+
+Mailcow is automatically updated using a script.
+
+```bash
+cd /opt/mailcow-dockerized
+./update.sh
+```
+
+### [Options](https://mailcow.github.io/mailcow-dockerized-docs/i_u_m_update/#options)
+
+```shell
+# Options can be combined
+
+# - Check for updates and show changes
+./update.sh --check
+
+# Do not try to update docker-compose, **make sure to use the latest docker-compose available**
+./update.sh --no-update-compose
+
+# - Do not start mailcow after applying an update
+./update.sh --skip-start
+
+# - Force update (unattended, but unsupported, use at own risk)
+./update.sh --force
+
+# - Run garbage collector to cleanup old image tags and exit
+./update.sh --gc
+
+# - Update with merge strategy option "ours" instead of "theirs"
+#   This will **solve conflicts** when merging in favor for your local changes and should be avoided. Local changes will always be kept, unless we changed file XY, too.
+./update.sh --ours
+
+# - Don't update, but prefetch images and exit
+./update.sh --prefetch
+```
 
 ## Changelog
 
