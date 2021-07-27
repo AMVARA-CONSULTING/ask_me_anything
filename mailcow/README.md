@@ -171,12 +171,35 @@ docker-compose pull
   WATCHDOG_NOTIFY_EMAIL=send@example.com
   ```
 
-* Edited `extra.cf`
+* Edited `data/conf/postfix/extra.cf`
   * Added
 
     ```bash
     mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 [fe80::]/10 172.22.1.0/24 [fd4d:6169:6c63:6f77::]/64 192.168.2.0/24
     ```
+
+* Created `data/conf/nginx/redirect.conf`
+  * Added
+
+  ```bash
+  server {
+    root /web;
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    include /etc/nginx/conf.d/server_name.active;
+    if ( $request_uri ~* "%0A|%0D" ) { return 403; }
+    location ^~ /.well-known/acme-challenge/ {
+      allow all;
+      default_type "text/plain";
+    }
+    location / {
+      return 301 https://$host$uri$is_args$args;
+    }
+  }
+  ```
+
+  > Note  
+  > Don't use this if you have or want to implement reverse proxy
 
 * Start mailcow
 
