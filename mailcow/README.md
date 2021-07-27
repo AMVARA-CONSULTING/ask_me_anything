@@ -219,11 +219,16 @@ Access -> Administrator -> Two-factor authentication: Please select -> Time-base
 
 <https://user-images.githubusercontent.com/57411642/126799404-7366b478-67a4-4764-af16-2e9bf4dd7f16.mp4>
 
-### Enable Rspamd UI
+### [Enable Rspamd UI](https://mailcow.github.io/mailcow-dockerized-docs/firststeps-rspamd_ui/)
+
+[Rspamd documentation](https://rspamd.com/doc/index.html)
 
 Access -> Rspamd UI
 
 <https://user-images.githubusercontent.com/57411642/126799516-c040f32d-aa7f-4c22-ba2e-07051978a348.mp4>
+
+> **Acces to Rspamd UI**  
+> **`https://${MAILCOW_HOSTNAME}/rspamd`**
 
 ### Configure fail2ban
 
