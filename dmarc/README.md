@@ -7,6 +7,8 @@
 DMARC is a standard email authentication, policy, and reporting protocol, is configured as a txt record in DNS. It is developed to work with SPF and DKIM protocols. Helps prevent hackers and other attackers from spoofing your organization and domain.
 
 ![DMARC author to recipient flow](DMARC_author-to-recipient_flow.jpg)
+<br/>*This image is taken from the documentation of [dmarc.org/overview](https://dmarc.org/overview/)*
+
 
 You can configure DMARC to receive reports from external servers, and send them to a specified account, to help identify possible authentication problems and malicious activity for messages sent from our mail server.
 
