@@ -1,0 +1,7 @@
+{
+  "name": "bubbling",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
