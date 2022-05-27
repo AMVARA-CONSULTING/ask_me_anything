@@ -1,0 +1,13 @@
+div {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        padding: 10px 20px;
+        margin: 10px;
+        color: red;
+    }
+}
