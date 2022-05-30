@@ -34,7 +34,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 
-### Are you tired of writing error handler on every http call? are you tired of catching run time errors? are you tired of no being able try/catch asynchronous code?
+### Are you tired of writing error handler on every http call? are you tired of catching run time errors? are you tired of not being able try/catch asynchronous code?
 &nbsp;<br>
 ### In this post, we are going to talk about how to create single, global, centralized, efficient error handler for whole project, once and for all.
 &nbsp;<br>
@@ -44,7 +44,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Angular ErrorHandler, provides a way for us to actually centralize exception catching and handling. So if we just implement a very basic version of it, it will catch all the expections for us.
 
 &nbsp;<br>
-### Lets go ahead and create a class `globalErrorHandler/globalErrorHandler.ts` 
+### Let's go ahead and create a class `globalErrorHandler/globalErrorHandler.ts` 
 
 ```javascript
 class globalErrorHandler implements ErrorHandler {
@@ -62,17 +62,17 @@ providers: [
 ]
 ```
 
-### This is enought to catch all the errors, **BUT** we dont want to implement it just like this, we need to adequately treat an error.
+### This is enought to catch all the errors, **BUT** we don't want to implement it just like this, we need to adequately treat an error.
 &nbsp;<br>
 ### Why? Well there are couple of reasons.
-### <li> User experience - First of all, we dont want our users seeing an error they can't understand. We want our user to see a nice message when some error is fired and we ourselves want to see an ugly error.</li> ###
+### <li> User experience - First of all, we don't want our users seeing an error they can't understand. We want our user to see a nice message when some error is fired and we ourselves want to see an ugly error.</li> ###
           
-### <li>Error trackingAnd of course, we want to get as much information as possible from the handler, because we want to be able to track and eliminate the problem as fast as possible.Being able to provide a global, centralized error handling, by default Angular errorHandler lacks error tracking. Angular gives us a way to implement it in our way, so we can adapt it to our. </li>
+### <li>Error tracking and of course, we want to get as much information as possible from the handler, because we want to be able to track and eliminate the problem as fast as possible. Being able to provide a global, centralized error handling, by default Angular errorHandler lacks error tracking. Angular gives us a way to implement it in our way, so we can adapt it to our needs. </li>
 
 &nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>
 ### So let's add more managment and give our error handler a personal touch.
 &nbsp;<br>
-### create `customSelectors/error.selector.ts` file and export error messages - This will help us to provide adequate feedback for the developers, allowing them to track error faster.
+### Create `customSelectors/error.selector.ts` file and export error messages - This will help us to provide adequate feedback for the developers, allowing them to track error faster.
 &nbsp;<br>
 ### You can implement this file to your preference and provide data, for now let's just export it.
 &nbsp;<br>
@@ -129,7 +129,7 @@ export const setErroCodeMessage = (code: number, message: string) => {
 ### We can also refactor this .ts file and  instead of exporting string message, export an object for each status code key, but for now let's continue with this.
 &nbsp;<br>
 
-### create `globalErrorHandler/error.service.ts file` - this service will provide for errorHandler adequate message depending on error's status code.
+### Create `globalErrorHandler/error.service.ts file` - this service will provide for errorHandler adequate message depending on error's status code.
 &nbsp;<br>
 
 ```javascript
@@ -149,7 +149,7 @@ export class ErrorService {
 
 
 
-### Now lets implement globalErrorHandler class in a more advanced way.
+### Now let's implement globalErrorHandler class in a more advanced way.
 &nbsp;<br>
 
 ```javascript
@@ -271,4 +271,4 @@ export class AppComponent {
 &nbsp;<br>
 
 ## Here is the result
-![image info](/src/assets/errors.png)
+![image info](src/assets/errors.png)
