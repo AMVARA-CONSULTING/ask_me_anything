@@ -40,10 +40,10 @@ export class GlobalErrorHandler implements ErrorHandler {
     }
 
     private getUserFriendlyMessage(error: any) {
-        return error instanceof HttpErrorResponse ? 'Could not get the data': 'Server is under maintaince';
+        return error instanceof HttpErrorResponse ? 'Could not get the data': 'Not http Error';
     }
 
     private technicalMessage(error: any) {
-        return error instanceof HttpErrorResponse ? <any>error.url: 'This seems to be an issue from our side';
+        return error instanceof HttpErrorResponse ? <any>error.url: 'Something went wrong in the program';
     }
 }

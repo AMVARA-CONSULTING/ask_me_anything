@@ -13,6 +13,17 @@ export class AppComponent {
 
   constructor(private api: ApiService) {}
   
+  notexistingfunction() {
+
+	console.log("AMV Error 1")
+	let foo = [1,2]
+	console.log( "AMV Error 2", foo[-1])
+	foo[-1]=foo[-1]
+	JSON.parse("foo")
+	console.log( "AMV Error 3", foo[-1])
+  }
+
+
   fire404() {
     this.api.get404().subscribe({
       next: (res) => {},
